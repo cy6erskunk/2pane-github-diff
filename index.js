@@ -49,5 +49,5 @@ app.use(function (err, req, res, next) {
     res.send(500, 'WHOOPS...');
 });
 
-
-app.listen(config.port, config.host);
+console.log('startting on port ' + Number(process.env.PORT) || config.port);
+app.listen(Number(process.env.PORT) || config.port);
