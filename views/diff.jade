@@ -1,0 +1,22 @@
+doctype html
+html
+    head
+        link(rel="stylesheet", type="text/css", href="css/diff.css")
+    body
+        a(href="/") /
+        div.loader-wrapper
+            div.loader
+            div.loader__text Loading...
+
+
+        div.outer-wrapper
+            div.outer-wrapper__left
+                div.wrapper.wrapper_left
+            div.outer-wrapper__right
+                div.wrapper.wrapper_right
+            div.overview-wrapper
+                div.overview
+
+        script(type="text/javascript", src="es5-shim.min.js")
+        script(type="text/javascript", src="diff_test.js")
+        script(type="text/javascript", src="js/diff.min.js")
