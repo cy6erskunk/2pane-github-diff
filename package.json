@@ -36,5 +36,8 @@
     "grunt-contrib-sass": "~0.7.3",
     "grunt-nodemon": "~0.2.1"
   },
-  "private": true
+  "private": true,
+  "engines": {
+      "node": "0.10.x"
+  }
 }
