@@ -6,3 +6,4 @@ src/built.js
 .sass-cache/
 dist/*/
 dist/diff_test.js
+meta.json
