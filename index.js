@@ -1,6 +1,7 @@
 var express = require('express'),
     debug = require('./lib/debug'),
     config = require('./config'),
+    jsesc = require('jsesc'),
     app = express(),
     diffGetter  = require('./lib/diff-getter'),
     fs = require('fs'),
@@ -32,8 +33,8 @@ app.get('/retrieve', function (req, res, next) {
 
     diffGetter(options).then(function (response) {
         var patch = 'var diff_model = ' + response.patch + ';\n\n',
-            fileBefore = 'var content_before = "' + response.fileBefore.replace(/"/g, '\\"') + '";\n\n',
-            fileAfter = 'var content_after = "' + response.fileAfter.replace(/"/g, '\\"') + '";\n\n';
+            fileBefore = 'var content_before = "' + jsesc(response.fileBefore, { quotes: 'double'}) + '";\n\n',
+            fileAfter = 'var content_after = "' + jsesc(response.fileAfter, { quotes: 'double'}) + '";\n\n';
 
         fs.writeFileSync('dist/diff_test.js', patch + fileBefore + fileAfter);
         fs.writeFileSync(cacheConf, JSON.stringify(options));
