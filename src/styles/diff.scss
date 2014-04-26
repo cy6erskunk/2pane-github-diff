@@ -17,6 +17,11 @@ body
     font-size: 16px;
 }
 
+.form
+{
+    margin-left: 1em;
+}
+
 .loader
 {
     @include absolute-zeroes;
@@ -43,7 +48,7 @@ body
 .outer-wrapper
 {
     @include absolute-zeroes;
-    margin: 1em;
+    margin: 2em 1em 1em;
     padding: 0;
 }
 

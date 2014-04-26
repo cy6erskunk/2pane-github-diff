@@ -7,6 +7,9 @@ body {
   height: 100%;
   font-size: 16px; }
 
+.form {
+  margin-left: 1em; }
+
 .loader {
   position: absolute;
   top: 0;
@@ -36,7 +39,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  margin: 1em;
+  margin: 2em 1em 1em;
   padding: 0; }
 
 .outer-wrapper__left {
