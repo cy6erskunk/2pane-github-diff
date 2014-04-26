@@ -1,4 +1,5 @@
 var express = require('express'),
+    debug = require('./lib/debug'),
     config = require('./config'),
     app = express(),
     diffGetter  = require('./lib/diff-getter'),
@@ -24,6 +25,7 @@ app.get('/retrieve', function (req, res, next) {
         };
 
     if (fs.existsSync(metaFile) && equal(options, JSON.parse(fs.readFileSync(metaFile)))) {
+        debug('loading from cache, options: ', options);
         return next();
     }
 
