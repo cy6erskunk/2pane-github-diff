@@ -7,18 +7,18 @@ var express = require('express'),
     fs = require('fs'),
     equal = require('deep-equal'),
     ignoreCache = Boolean(process.env.IGNORE_CACHE),
+    cacheConf = 'cache.json',
     options = {};
 
 app.use(express.static(__dirname + '/dist'));
 
 app.get('/', function (req, res, next) {
-    var cacheConf = 'cache.json';
-
     options = {
-        username: req.query.user || null,
-        repo: req.query.repo || null,
-        filename: req.query.filename || null,
-        commitish: req.query.commit || null
+        user: req.query.user || '',
+        repo: req.query.repo || '',
+        file: req.query.filename || '',
+        commit: req.query.commit || '',
+        empty: false
     };
 
     if (! ignoreCache && fs.existsSync(cacheConf) && equal(options, JSON.parse(fs.readFileSync(cacheConf)))) {
@@ -26,7 +26,7 @@ app.get('/', function (req, res, next) {
         return next();
     }
 
-    if (options.username && options.repo && options.filename) {
+    if (options.user && options.repo && options.file) {
         diffGetter(options).then(function (response) {
             var patch = 'var diff_model = ' + response.patch + ';\n\n',
                 fileBefore = 'var content_before = "' + jsesc(response.fileBefore, { quotes: 'double'}) + '";\n\n',
@@ -42,13 +42,7 @@ app.get('/', function (req, res, next) {
     }
     return next();
 }, function (req, res) {
-    res.render('diff.jade', {
-        user: options.username || '',
-        repo: options.repo || '',
-        file: options.filename || '',
-        commit: options.commitish || '',
-        empty: Boolean(options.empty)
-    });
+    res.render('diff.jade', options);
 });
 
 app.use(function (err, req, res, next) {
