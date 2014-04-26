@@ -7,7 +7,8 @@ var express = require('express'),
     equal = require('deep-equal'),
     renderDiff = function (req, res) {
         return res.render('diff.jade', {});
-    };
+    },
+    ignoreCache = Boolean(process.env.IGNORE_CACHE);
 
 app.use(express.static(__dirname + '/dist'));
 
@@ -16,7 +17,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/retrieve', function (req, res, next) {
-    var metaFile = 'meta.json',
+    var cacheConf = 'cache.json',
         options = {
             username: req.query.user,
             repo: req.query.repo,
@@ -24,7 +25,7 @@ app.get('/retrieve', function (req, res, next) {
             commitish: req.query.commit || null
         };
 
-    if (fs.existsSync(metaFile) && equal(options, JSON.parse(fs.readFileSync(metaFile)))) {
+    if (! ignoreCache && fs.existsSync(cacheConf) && equal(options, JSON.parse(fs.readFileSync(cacheConf)))) {
         debug('loading from cache, options: ', options);
         return next();
     }
@@ -35,7 +36,7 @@ app.get('/retrieve', function (req, res, next) {
             fileAfter = 'var content_after = "' + response.fileAfter.replace(/"/g, '\\"') + '";\n\n';
 
         fs.writeFileSync('dist/diff_test.js', patch + fileBefore + fileAfter);
-        fs.writeFileSync(metaFile, JSON.stringify(options));
+        fs.writeFileSync(cacheConf, JSON.stringify(options));
         next();
     }).fail(function (error) {
         return next(error);

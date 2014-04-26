@@ -5,4 +5,4 @@ height-sync.png
 src/built.js
 .sass-cache/
 dist/diff_test.js
-meta.json
+cache.json
