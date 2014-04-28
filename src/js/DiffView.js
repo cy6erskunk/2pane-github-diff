@@ -21,6 +21,7 @@
  * @method _scrollUp
  * @method _scrollDown
  * @method _scrollToFirstLine
+ * @method _positionPseudoScroll
  * @method _addOverView
  *
  **/
@@ -89,7 +90,8 @@ viewProto._processOptions = function (options) {
         overviewChild: {
             cls: 'overview__diff',
             height: 10
-        }
+        },
+        pseudoScrollSelector: '.overview-wrapper .position'
     };
 
     if (options) {
@@ -134,6 +136,7 @@ viewProto.displayPanels = function (firstLine) {
     this._addCodeToTarget(dataSlices.after, this.rightPanel);
 
     this._scrollToFirstLine();
+    this._positionPseudoScroll(this.firstLine);
 
     return this;
 };
@@ -370,6 +373,8 @@ viewProto._bindHandlers = function () {
             self.rightPanel.scrollTop = DOM.target(e).scrollTop;
             self.rightPanel.scrollLeft = DOM.target(e).scrollLeft;
         }
+
+        self._positionPseudoScroll(currentLineNumber);
     });
 
     DOM.bindEvent(this.rightPanel, 'scroll', function (e) {
@@ -391,6 +396,14 @@ viewProto._scrollToFirstLine = function () {
     return this;
 };
 
+viewProto._positionPseudoScroll = function (currentLineNumber) {
+    var pseudoScrollElem = document.querySelector(this.o.pseudoScrollSelector),
+        overviewHeight = (document.querySelector(this.o.overviewSelector)).clientHeight;
+
+    pseudoScrollElem.style.top = Math.floor(currentLineNumber / this.diffData.getLinesCount() * overviewHeight) + 'px';
+
+    return this;
+};
 
 viewProto._addOverview = function () {
     var self = this,
