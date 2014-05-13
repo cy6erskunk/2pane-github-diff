@@ -1,5 +1,6 @@
 /* jshint node: true */
 module.exports = function (grunt) {
+    var config = require('./config');
 
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
@@ -71,21 +72,22 @@ module.exports = function (grunt) {
                 }
             },
         },
-        connect: {
-            server: {
-                options: {
-                    port: 1080,
-                    base: '.',
-                    livereload: true,
-                    open: 'http://localhost:1080/diff_test.html'
-                }
+        open: {
+            dev: {
+                path: 'http://localhost:' + config.port + '/'
+            }
+        },
+        concurrent: {
+            dev: [ 'nodemon:dev', 'open', 'watch&build'],
+            options: {
+                logConcurrentOutput: true
             }
         }
     });
 
-    grunt.registerTask('default', [ 'build-dev', 'jshint', 'connect', 'watch']);
-    grunt.registerTask('build-dev', [ 'concat:dev', 'sass']);
     grunt.registerTask('build', [ 'concat:dist', 'uglify', 'sass']);
-    grunt.registerTask('server', [ 'build', 'connect', 'watch' ]);
+    grunt.registerTask('build-dev', [ 'concat:dev', 'sass']);
+    grunt.registerTask('watch&build', [ 'build-dev', 'jshint', 'watch']);
+    grunt.registerTask('server', [ 'concurrent:dev' ]);
 
 };
