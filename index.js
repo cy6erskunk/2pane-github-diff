@@ -3,8 +3,8 @@ var express = require('express'),
     debug = require('./lib/debug'),
     config = require('./config'),
     jsesc = require('jsesc'),
+    VowGithub = require('./lib/vow-github'),
     Vow = require('vow'),
-    asker = require('vow-asker'),
     app = express(),
     diffGetter  = require('./lib/diff-getter'),
     fs = require('fs'),
@@ -30,27 +30,14 @@ app.get('/', function (req, res, next) {
 
     return Vow.invoke(function () {
         if (req.cookies.gh_access_token) {
-            return asker({
-                protocol: 'https:',
-                host: 'api.github.com',
-                path: '/user',
-                query: {
-                    access_token: req.cookies.gh_access_token
-                },
-                headers: {
-                    Accept: 'application/json',
-                    'User-Agent': 'Awesome diff getter'
-                },
-                method: 'GET',
-                allowGzip: true,
-                timeout: 5000
-            })
+
+            return VowGithub.getUser(req.cookies.gh_access_token)
             .then(function(response) {
                 var data = JSON.parse(response.data);
                 if (data.error) {
                     return next(data.error);
                 } else {
-                    if ( ! req.cookies.gh_login || req.cookies.gh_login == data.login) { 
+                    if ( ! req.cookies.gh_login || req.cookies.gh_login == data.login) {
                         res.cookie('gh_login', data.login);
                         options.gh_login = data.login;
                     } else if (req.cookies.gh_login != data.login) {
@@ -97,22 +84,7 @@ app.get('/', function (req, res, next) {
 app.get('/callback', function (req, res, next) {
     var sessionCode = req.query.code;
 
-    asker({
-        protocol: 'https:',
-        host: 'github.com',
-        path: '/login/oauth/access_token',
-        query: {
-            client_id: GH_CLIENT_ID,
-            client_secret: GH_SECRET,
-            code: sessionCode
-        },
-        headers: {
-            Accept: 'application/json'
-        },
-        method: 'POST',
-        allowGzip: true,
-        timeout: 5000
-    })
+    VowGithub.getAccessToken(GH_CLIENT_ID, GH_SECRET, sessionCode)
     .then(function(response) {
         var data = JSON.parse(response.data);
         if (data.error) {
