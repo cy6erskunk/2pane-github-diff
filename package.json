@@ -10,14 +10,14 @@
   "author": "Igor Shevchenko <cyberskunk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "vow-asker": "^0.6.1",
-    "extend": "~1.2.1",
-    "express": "~4.1.0",
-    "jade": "~1.3.1",
+    "cookie-parser": "^1.0.1",
     "deep-equal": "~0.2.1",
+    "express": "^4.1.2",
+    "extend": "^1.2.1",
+    "jade": "^1.3.1",
     "jsesc": "^0.4.3",
-    "cookie-parser": "~1.0.1",
-    "vow": "~0.4.3"
+    "vow": "~0.4.3",
+    "vow-asker": "^0.6.1"
   },
   "devDependencies": {
     "chai": "~1.9.1",
