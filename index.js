@@ -62,20 +62,23 @@ app.get('/', function (req, res, next) {
         }
 
         if (options.user && options.repo && options.file) {
-            diffGetter(options).then(function (response) {
-                var patch = 'var diff_model = ' + response.patch + ';\n\n',
-                    fileBefore = 'var content_before = "' + jsesc(response.fileBefore, { quotes: 'double'}) + '";\n\n',
-                    fileAfter = 'var content_after = "' + jsesc(response.fileAfter, { quotes: 'double'}) + '";\n\n';
+            fs.writeFileSync('dist/diff_test.js', 'var diff_model = [], content_before = content_after = \'\';');
 
-                fs.writeFileSync('dist/diff_test.js', patch + fileBefore + fileAfter);
-                fs.writeFileSync(cacheConf, JSON.stringify(options));
-            }).fail(function (error) {
-                return next(error);
-            });
+            diffGetter(options)
+                .then(function (response) {
+                    var patch = 'diff_model = ' + response.patch + ';\n\n',
+                        fileBefore = 'content_before = "' + jsesc(response.fileBefore, { quotes: 'double'}) + '";\n\n',
+                        fileAfter = 'content_after = "' + jsesc(response.fileAfter, { quotes: 'double'}) + '";\n\n';
+
+                    fs.writeFileSync('dist/diff_test.js', patch + fileBefore + fileAfter);
+                    fs.writeFileSync(cacheConf, JSON.stringify(options));
+                }).fail(function (error) {
+                    return next(error);
+                });
         } else {
             options.empty = true;
         }
-        return next();
+        return next(error);
     });
 }, function (req, res) {
     res.render('diff.jade', options);
