@@ -2,7 +2,7 @@
 module.exports = function (grunt) {
     var config = require('./config');
 
-    require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
+    require('load-grunt-tasks')(grunt);
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -89,5 +89,6 @@ module.exports = function (grunt) {
     grunt.registerTask('build-dev', [ 'concat:dev', 'sass']);
     grunt.registerTask('watch&build', [ 'build-dev', 'jshint', 'watch']);
     grunt.registerTask('server', [ 'concurrent:dev' ]);
+    grunt.registerTask('default', 'server');
 
 };
