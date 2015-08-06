@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha"
+    "test": "mocha",
+    "test-phantom-once": "karma start --single-run --browsers PhantomJS"
   },
   "author": "Igor Shevchenko <cyberskunk@gmail.com>",
   "license": "MIT",
