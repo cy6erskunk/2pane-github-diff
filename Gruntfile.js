@@ -1,5 +1,5 @@
 /* jshint node: true */
-var timer = require("grunt-timer");
+var timer = require('grunt-timer');
 
 module.exports = function (grunt) {
     timer.init(grunt);
