@@ -400,7 +400,9 @@ viewProto._positionPseudoScroll = function (currentLineNumber) {
     var pseudoScrollElem = document.querySelector(this.o.pseudoScrollSelector),
         overviewHeight = (document.querySelector(this.o.overviewSelector)).clientHeight;
 
-    pseudoScrollElem.style.top = Math.floor(currentLineNumber / this.diffData.getLinesCount() * overviewHeight) + 'px';
+    // minimal height of pseudoScrollElem = 10px
+    pseudoScrollElem.style.top = (Math.floor(currentLineNumber / this.diffData.getLinesCount() * overviewHeight) - 5) + 'px';
+    pseudoScrollElem.style.height = (Math.max(10, Math.floor(this.leftPanel.clientHeight / this.leftPanel.scrollHeight * overviewHeight)) )+ 'px';
 
     return this;
 };
