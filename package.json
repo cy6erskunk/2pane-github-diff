@@ -29,7 +29,7 @@
     "grunt-contrib-sass": "0.7.4",
     "grunt-contrib-uglify": "0.4.1",
     "grunt-contrib-watch": "0.6.1",
-    "grunt-nodemon": "0.2.1",
+    "grunt-nodemon": "0.4.2",
     "grunt-open": "0.2.3",
     "grunt-timer": "0.5.9",
     "karma": "0.12.37",
