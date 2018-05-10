@@ -17,7 +17,7 @@
     "jade": "1.11.0",
     "jsesc": "0.4.3",
     "vow": "0.4.17",
-    "vow-asker": "0.6.6"
+    "vow-asker": "0.8.2"
   },
   "devDependencies": {
     "chai": "1.9.2",
