@@ -40,7 +40,7 @@
     "karma-teamcity-reporter": "0.1.2",
     "load-grunt-tasks": "1.0.0",
     "matchdep": "0.3.0",
-    "mocha": "1.18.2",
+    "mocha": "1.21.5",
     "sinon": "1.9.1",
     "sinon-chai": "2.5.0"
   },
