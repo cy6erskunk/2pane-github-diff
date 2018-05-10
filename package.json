@@ -42,7 +42,7 @@
     "matchdep": "0.3.0",
     "mocha": "1.18.2",
     "sinon": "1.9.1",
-    "sinon-chai": "2.5.0"
+    "sinon-chai": "2.14.0"
   },
   "private": true,
   "engines": {
