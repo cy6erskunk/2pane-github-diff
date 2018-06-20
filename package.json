@@ -13,7 +13,7 @@
     "cookie-parser": "1.4.3",
     "deep-equal": "0.2.2",
     "express": "4.16.3",
-    "extend": "2.0.1",
+    "extend": "3.0.1",
     "jade": "1.11.0",
     "jsesc": "0.4.3",
     "vow": "0.4.17",
