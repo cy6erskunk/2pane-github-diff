@@ -35,7 +35,7 @@
     "karma": "3.1.1",
     "karma-chrome-launcher": "2.2.0",
     "karma-firefox-launcher": "1.1.0",
-    "karma-jasmine": "1.1.2",
+    "karma-jasmine": "2.0.0",
     "karma-phantomjs-launcher": "1.0.4",
     "karma-teamcity-reporter": "1.1.0",
     "load-grunt-tasks": "4.0.0",
