@@ -6,14 +6,14 @@ html
 
         form(action="/").form
             if gh_login
-                span.login #{gh_login}
+                span.login gh_login
             else if clientId
-                a.login(href="https://github.com/login/oauth/authorize?client_id=#{clientId}") Authorize?
+                a.login(href=`https://github.com/login/oauth/authorize?client_id=${clientId}`) Authorize?
 
-            input(type="text", name="user", placeholder="login", value="#{user}")
-            input(type="text", name="repo", placeholder="repository name", value="#{repo}")
-            input(type="text", name="filename" placeholder="filename", value="#{file}")
-            input(type="text", name="commit" placeholder="commit", value="#{commit}")
+            input(type="text", name="user", placeholder="login", value=user)
+            input(type="text", name="repo", placeholder="repository name", value=repo)
+            input(type="text", name="filename" placeholder="filename", value=file)
+            input(type="text", name="commit" placeholder="commit", value=commit)
             input(type="submit")
 
         if ! empty

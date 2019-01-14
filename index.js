@@ -17,6 +17,7 @@ var express = require('express'),
 
 app.use(express.static(__dirname + '/dist'));
 app.use(cookieParser());
+app.set('view engine', 'pug');
 
 app.get('/', function (req, res, next) {
     options = {
@@ -85,7 +86,7 @@ app.get('/', function (req, res, next) {
         }
     });
 }, function (req, res) {
-    res.render('diff.jade', options);
+    res.render('diff.pug', options);
 });
 
 app.get('/callback', function (req, res, next) {
