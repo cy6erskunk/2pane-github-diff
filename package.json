@@ -16,7 +16,7 @@
     "extend": "3.0.2",
     "jsesc": "2.5.2",
     "pug": "^2.0.3",
-    "vow": "0.4.18",
+    "vow": "0.4.19",
     "vow-asker": "1.0.0"
   },
   "devDependencies": {
