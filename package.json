@@ -30,7 +30,7 @@
     "grunt-contrib-uglify": "4.0.1",
     "grunt-contrib-watch": "1.1.0",
     "grunt-nodemon": "0.4.2",
-    "grunt-open": "0.2.3",
+    "grunt-open": "0.2.4",
     "grunt-timer": "0.6.0",
     "karma": "4.0.1",
     "karma-chrome-launcher": "2.2.0",
