@@ -41,7 +41,7 @@
     "load-grunt-tasks": "5.1.0",
     "matchdep": "2.0.0",
     "mocha": "7.2.0",
-    "sinon": "9.0.2",
+    "sinon": "9.0.3",
     "sinon-chai": "3.5.0"
   },
   "private": true,
