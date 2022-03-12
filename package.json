@@ -10,7 +10,7 @@
   "author": "Igor Shevchenko <cyberskunk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cookie-parser": "1.4.5",
+    "cookie-parser": "1.4.6",
     "deep-equal": "2.0.3",
     "express": "4.17.1",
     "extend": "3.0.2",
