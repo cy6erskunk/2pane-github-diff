@@ -20,7 +20,7 @@
     "vow-asker": "2.0.0"
   },
   "devDependencies": {
-    "chai": "4.3.6",
+    "chai": "4.5.0",
     "grunt": "1.5.3",
     "grunt-cli": "1.3.2",
     "grunt-concurrent": "3.0.0",
