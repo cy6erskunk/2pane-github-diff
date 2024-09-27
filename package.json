@@ -12,7 +12,7 @@
   "dependencies": {
     "cookie-parser": "1.4.6",
     "deep-equal": "2.0.3",
-    "express": "4.19.2",
+    "express": "4.21.0",
     "extend": "3.0.2",
     "jsesc": "3.0.1",
     "pug": "3.0.3",
