@@ -10,9 +10,9 @@
   "author": "Igor Shevchenko <cyberskunk@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "cookie-parser": "1.4.6",
+    "cookie-parser": "1.4.7",
     "deep-equal": "2.0.3",
-    "express": "4.21.0",
+    "express": "4.21.1",
     "extend": "3.0.2",
     "jsesc": "3.0.1",
     "pug": "3.0.3",
