@@ -46,6 +46,6 @@
   },
   "private": true,
   "engines": {
-    "node": ">=0.12.x"
+    "node": "v26.8.2"
   }
 }
